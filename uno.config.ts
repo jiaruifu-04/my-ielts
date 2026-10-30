@@ -1,3 +1,4 @@
+import process from 'node:process'
 import {
   defineConfig,
   presetAttributify,
@@ -41,14 +42,17 @@ export default defineConfig({
         ph: () => import('@iconify-json/ph/icons.json').then(i => i.default),
       },
     }),
-    presetWebFonts({
-      provider: 'bunny',
-      fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-        Charmonman: 'Charmonman',
-      },
-    }),
+    // Unit tests exercise data and components without fetching external fonts.
+    ...(process.env.VITEST
+      ? []
+      : [presetWebFonts({
+          provider: 'bunny',
+          fonts: {
+            sans: 'DM Sans',
+            serif: 'DM Serif Display',
+            mono: 'DM Mono',
+            Charmonman: 'Charmonman',
+          },
+        })]),
   ],
 })

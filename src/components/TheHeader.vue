@@ -6,6 +6,11 @@ const menus = reactive([
     link: '/',
   },
   {
+    label: '备考中心',
+    icon: 'i-carbon-chart-line',
+    link: '/study',
+  },
+  {
     label: '词汇',
     icon: 'i-carbon-chart-histogram',
     link: '/vocabulary',
@@ -44,12 +49,11 @@ const showMobileMenu = ref(false)
     <nav class="fixed z-30 w-full border-b border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
       <div class="mx-auto max-w-screen-2xl flex items-center justify-between">
         <div class="flex items-center justify-start">
-          <a href="/" class="mr-14 flex">
+          <RouterLink to="/" class="mr-6 flex">
             <span class="hidden self-center whitespace-nowrap text-2xl font-semibold sm:flex dark:text-white">My
               <span class="ml-1 text-red-600"> IELTS™</span>
             </span>
-
-          </a>
+          </RouterLink>
           <!-- Desktop menu -->
           <div class="hidden w-full items-center justify-between lg:order-1 lg:w-auto lg:flex">
             <ul class="mt-4 flex flex-col items-center justify-items-center text-center align-middle text-sm font-medium lg:mt-0 lg:flex-row space-x-6 xl:space-x-8">
@@ -58,7 +62,7 @@ const showMobileMenu = ref(false)
                 :key="m.label"
               >
                 <router-link
-                  :class="$route.path === m.link ? 'block flex flex-row items-center rounded text-primary-700 dark:text-primary-500' : 'block flex flex-row items-center text-gray-700 dark:text-gray-400 hover:text-primary-700 dark:hover:text-white'"
+                  :class="($route.path === m.link || (m.link === '/study' && $route.path.startsWith('/study/'))) ? 'block flex flex-row items-center rounded text-primary-700 dark:text-primary-500' : 'block flex flex-row items-center text-gray-700 dark:text-gray-400 hover:text-primary-700 dark:hover:text-white'"
                   :to="m.link"
                 >
                   <i class="mr-1 inline-block" :class="m.icon" /> {{ m.label }}
@@ -69,7 +73,7 @@ const showMobileMenu = ref(false)
         </div>
         <div class="flex items-center justify-between lg:order-2">
           <a
-            href="https://github.com/hefengxian/my-ielts"
+            href="https://github.com/jiaruifu-04/my-ielts"
             target="_blank"
             class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-900 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-600"
           >

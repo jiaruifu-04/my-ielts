@@ -7,6 +7,12 @@ defineOptions({
 
 const menus = reactive([
   {
+    label: '7.5 备考中心',
+    icon: 'i-carbon-chart-line',
+    link: '/study',
+    desc: '设置目标、建立四科基线，记录训练并备份学习数据',
+  },
+  {
     label: '词汇',
     icon: 'i-carbon-chart-histogram',
     link: '/vocabulary',

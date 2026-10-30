@@ -7,8 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    RecordAttachments: typeof import('./src/components/study/RecordAttachments.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StudyShell: typeof import('./src/components/study/StudyShell.vue')['default']
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheHeader: typeof import('./src/components/TheHeader.vue')['default']

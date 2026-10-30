@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -49,6 +49,9 @@ devDependencies:
   eslint:
     specifier: ^8.42.0
     version: 8.45.0
+  fake-indexeddb:
+    specifier: '6'
+    version: 6.2.7
   jsdom:
     specifier: ^22.1.0
     version: 22.1.0
@@ -2737,6 +2740,7 @@ packages:
   /eslint-plugin-i@2.27.5-4(@typescript-eslint/parser@6.2.0)(eslint@8.45.0):
     resolution: {integrity: sha512-X3Z+dp9nZw7d/y41EDO6JyFw4WVMOT91SFuoJvL0C0/4M1l6NxQ5mLTjXHuYhq0AazW75pAmj25yMk5wPMzjsw==}
     engines: {node: '>=12'}
+    deprecated: Please migrate to the brand new `eslint-plugin-import-x` instead
     peerDependencies:
       eslint: ^7.2.0 || ^8
     dependencies:
@@ -3071,6 +3075,11 @@ packages:
     dependencies:
       esprima-extract-comments: 1.1.0
       parse-code-context: 1.0.0
+    dev: true
+
+  /fake-indexeddb@6.2.7:
+    resolution: {integrity: sha512-g0ghQ+BmU3CSZaHup5FigEAAtCmtNyxkrmID7OAeK2qONHghw1aQ2l2T1RxmfhP1H1tEXVRWArUTGVCk5832ww==}
+    engines: {node: '>=18'}
     dev: true
 
   /fast-deep-equal@3.1.3:
