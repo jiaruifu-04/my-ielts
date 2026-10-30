@@ -1,13 +1,15 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.6.0",
+  "packageManager": "pnpm@8.6.10",
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint .",
+    "lint:learning": "eslint src/components/study src/pages/study src/domain src/services src/composables/useLearningStore.ts test/learning.test.ts",
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest",
+    "test:run": "vitest run --threads false",
     "up": "taze major -I"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "@vue-macros/volar": "^0.10.2",
     "@vue/test-utils": "^2.3.2",
     "eslint": "^8.42.0",
+    "fake-indexeddb": "6",
     "jsdom": "^22.1.0",
     "lint-staged": "^13.2.2",
     "pnpm": "^8.6.0",

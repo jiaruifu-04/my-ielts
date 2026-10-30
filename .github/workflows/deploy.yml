@@ -9,24 +9,50 @@ on:
 jobs:
   test-build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: lts/Hydrogen
-      
-      - name: Install Dependencies
-        run: npm -g install pnpm@8.6.10 && pnpm i
+          node-version: '22'
 
-      # - name: Run Tests
-      #   run: yarn test
+      - name: Install Dependencies
+        run: npm -g install pnpm@8.6.10 && pnpm i --frozen-lockfile
+
+      - name: Type Check
+        run: pnpm run typecheck
+
+      - name: Lint Learning Features
+        run: pnpm run lint:learning
+
+      - name: Test Learning Data
+        run: pnpm run test:run
 
       - name: Run Build
         run: pnpm run build
 
+      - name: Save Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: test-build-deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
